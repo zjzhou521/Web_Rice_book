@@ -1,0 +1,114 @@
+<div class="div-center">
+  <div class="container-fluid p-3 my-3 bg-primary text-white" style="width: 1000px">
+    <div class="text-left">
+      <h3>
+        Welcome to RiceBook! &nbsp;
+        <button class="btn btn-warning" [routerLink]="['/main']">Main Page</button>&nbsp;
+        <button class="btn btn-danger" [routerLink]="['/']" (click)="logout()">Log Out</button>
+      </h3>
+    </div>
+  </div>
+
+  <div id="div-main" class="div-center"> <br>
+    <div id="div-user-img">
+      <img class="img-profile" src="{{curAvatar}}" title="profile picture"><br><br>
+      <h5>Upload new picture: </h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <form method="post" enctype="multipart/form-data">
+        <p>Image: <input type="file" accept="image/*" name="image" (change)="onChange($event)"/> </p>
+        <p><input type="submit" value="Upload" (click)="onUpload()"/></p>
+      </form>
+
+    </div>
+
+    <div id="div-user-info">
+      <h4 style="text-align: left">&nbsp; Current Info:</h4>
+      <div id="div-info">
+          <p><b>Username: </b>{{curUsername}}</p>
+          <p><b>Display name: </b>{{curDisplayName}}</p>
+          <p><b>Email address: </b>{{curEmail}}</p>
+          <p><b>Phone number: </b>{{curPhone}}</p>
+          <p><b>Zipcode: </b>{{curZipcode}}</p>
+      </div>
+    </div>
+
+    <div id="div-update-info">
+      <h4 style="text-align: left">&nbsp; Update Info:</h4>
+      <div id="div-update">
+        <form [formGroup]="updateForm" id="updateInfo" (ngSubmit)="updateInfo()">
+          <div class="container alert-container"  id="disp_name_changed">
+            <div class="alert alert-success">
+              <strong>Updated! </strong> Your have successfully updated your display name from <b><span id="disp_name_before"></span></b> to <b><span id="disp_name_after"></span></b>.
+            </div>
+          </div>
+          <b>Display Name: &nbsp;</b>
+          <input type="text" id="name" placeholder="New display name" formControlName="name"><br><br>
+
+          <div class="container alert-container"  id="email_alert">
+            <div class="alert alert-danger">
+              <strong>Email Format Error: </strong> Your email should contain @ and has character before and behind it.
+            </div>
+          </div>
+          <div class="container alert-container"  id="email_changed">
+            <div class="alert alert-success">
+              <strong>Updated! </strong> Your have successfully updated your email from <b><span id="email_before"></span></b> to <b><span id="email_after"></span></b>.
+            </div>
+          </div>
+          <b>Email address: &nbsp;</b>
+          <input type="email" id="email" name="email" placeholder="foo@gmail.com" formControlName="email"><br><br>
+
+          <div class="container alert-container"  id="phone_alert">
+            <div class="alert alert-danger">
+              <strong>Phone Number Format Error: </strong> Your phone number should be like "123-123-1234".
+            </div>
+          </div>
+          <div class="container alert-container"  id="phone_changed">
+            <div class="alert alert-success">
+              <strong>Updated! </strong> Your have successfully updated your phone number from <b><span id="phone_before"></span></b> to <b><span id="phone_after"></span></b>.
+            </div>
+          </div>
+          <b>Phone number: &nbsp;</b>
+          <input type="text" id="phone" name="phone" placeholder="123-123-1234" pattern="\d{3}-\d{3}-\d{4}" formControlName="phone"><br><br>
+
+          <div class="container alert-container"  id="zip_alert">
+            <div class="alert alert-danger">
+              <strong>Zip Code Format Error: </strong> Your zip code should be like "12345".
+            </div>
+          </div>
+          <div class="container alert-container"  id="zip_changed">
+            <div class="alert alert-success">
+              <strong>Updated! </strong> Your have successfully updated your zip code from <b><span id="zip_before"></span></b> to <b><span id="zip_after"></span></b>.
+            </div>
+          </div>
+          <b>Zipcode: &nbsp;</b>
+          <input type="text" id="zipcode" name="zipcode" placeholder="12345" pattern="\d{5}" formControlName="zipcode"><br><br>
+
+          <div class="container alert-container"  id="password_alert">
+            <div class="alert alert-danger">
+              <strong>Password Confirmation Error: </strong> Two passwords you typed are not the same.
+            </div>
+          </div>
+          <div class="container alert-container"  id="password_changed">
+            <div class="alert alert-success">
+              <strong>Updated! </strong> Your have successfully updated your password from <b><span id="pass_before"></span></b> to <b><span id="pass_after"></span></b>.
+            </div>
+          </div>
+          <b>Password: &nbsp;</b>
+          <input type="password" id="password" name="password" placeholder="password" formControlName="password"><br><br>
+          <b>Password Confirm: &nbsp;</b>
+          <input type="password" id="password_confirm" name="password_confirm" placeholder="password" formControlName="password_confirm"><br><br>
+          <input type="submit" class="btn-success" value="Update"> &nbsp;
+          <input type="reset" class="btn-danger" value="Clear" (click)="clearNotification()"><br><br>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
+

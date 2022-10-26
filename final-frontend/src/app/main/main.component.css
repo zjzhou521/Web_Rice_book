@@ -1,0 +1,112 @@
+.img-profile {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border: gray 1px solid;
+}
+
+.img-new-post {
+  /*width: 100px;*/
+  height: 70px;
+  object-fit: cover;
+  border: gray 1px solid;
+}
+
+#div-main {
+  width: 1000px;
+}
+
+#div-user-profile {
+  width: 300px;
+  height: 300px;
+  float: left;
+  border: gray 1px solid;
+}
+
+
+#div-new-post {
+  width: 690px;
+  height: 360px;
+  float: right;
+  border: gray 1px solid;
+}
+
+#new-post-text {
+  width: 680px;
+  height: 100px;
+}
+
+.edit-text {
+  width: 380px;
+  height: 70px;
+}
+
+.edit-comment {
+  width: 180px;
+  height: 30px;
+}
+
+#div-new-post-img {
+  text-align: left;
+}
+
+#div-sidebar {
+  border: gray 1px solid;
+  width: 300px;
+  float: left;
+}
+
+#div-search {
+  width: 690px;
+  border: gray 1px solid;
+  float: right;
+}
+
+#div-posts {
+  width: 690px;
+  border: gray 1px solid;
+  float: right;
+}
+
+.img-post {
+  width: 400px;
+  /*height: 300px;*/
+  border: gray 1px solid;
+}
+
+#div-post-border-up {
+  width: 690px;
+  border-top: gray 1px dashed;
+}
+
+#div-post-border-bottom {
+  width: 690px;
+  border-bottom: gray 1px dashed;
+}
+
+#div-single-post {
+  margin: 0 auto;
+  width: 650px;
+  /*border: gray 1px solid;*/
+}
+
+#div-comment {
+  margin: 0 auto;
+  width: 650px;
+  text-align: left;
+  /*border: gray 1px solid;*/
+}
+
+#div-comment-text {
+  color: gray;
+  margin-left: 5px;
+}
+
+/*#timestamp {*/
+/*  text-align: right;*/
+/*  margin-right: 5px;*/
+/*}*/
+
+.div-message-box {
+  color: red;
+}

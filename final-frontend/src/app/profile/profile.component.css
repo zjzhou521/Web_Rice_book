@@ -1,0 +1,44 @@
+.img-profile {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border: gray 1px solid;
+}
+
+#div-main {
+  width: 1000px;
+  border: gray 1px solid;
+}
+
+#div-user-info {
+  width: 397px;
+  /*height: 400px;*/
+  border: gray 1px solid;
+  float: left;
+}
+
+#div-info {
+  width: 300px;
+  text-align: left;
+  margin: 0 auto;
+}
+
+#div-update-info {
+  width: 600px;
+  /*height: 400px;*/
+  border: gray 1px solid;
+  float: right;
+}
+
+#div-update {
+  width: 550px;
+  text-align: left;
+  margin: 0 auto;
+  /*border: gray 1px solid;*/
+}
+
+.alert-container {
+  text-align: center;
+  display: none;
+  margin: 0 auto;
+}

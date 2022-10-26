@@ -1,0 +1,107 @@
+<div class="div-center">
+  <div class="container-fluid p-3 my-3 bg-primary text-white" style="width: 1000px">
+    <div class="text-left">
+      <h3>
+        Welcome to RiceBook! &nbsp;
+        <button class="btn btn-warning" [routerLink]="['/profile']">Profile</button>&nbsp;
+        <button class="btn btn-danger" [routerLink]="['/']" (click)="logout()">Log Out</button>
+      </h3>
+    </div>
+  </div>
+
+  <div id="div-main" class="div-center">
+    <div id="div-user-profile">
+      <h4 style="text-align: left">&nbsp; Your status:</h4>
+      <img class="img-profile" src="{{curUser.imgUrl}}" title="current user's profile picture"><br>
+      <b>{{curUser.username}}</b><br>
+      <p>{{curUser.status}}</p>
+      <input type="text" placeholder="New Status" id="new-status" maxlength="50"> &nbsp;
+      <input type="button" class="btn-primary" value="Update" (click)="updateStatus()">
+    </div>
+
+    <div id="div-new-post">
+      <h4 style="text-align: left">&nbsp; New Post:</h4>
+      <input type="text" id="new-post-text" placeholder="Your post here">
+      &nbsp;
+      <div id="div-new-post-img">
+        <form method="post" enctype="multipart/form-data">
+          <p>Add Image: <input type="file" accept="image/*" name="image" id="input-file" (change)="onChange($event)"/> &nbsp; <input type="submit" value="Upload" (click)="onUpload()"/></p>
+        </form>
+      </div>
+      <ng-container *ngIf="curPostImgUrl != ''">
+        Image preview: <img class="img-new-post" src="{{curPostImgUrl}}" title="profile picture"><br>
+      </ng-container>
+      <br>
+      <button class="btn btn-primary" (click)="createNewPost()">Post</button>&nbsp;
+      <button class="btn btn-danger" (click)="cancelNewPost()">Cancel</button>
+    </div>
+
+    <div id="div-sidebar">
+      <h4 style="text-align: left">&nbsp; Following's status:</h4>
+
+      <div *ngFor="let foUser of followingUsers">
+        <img class="img-profile" src="{{foUser.imgUrl}}" title="others' profile picture"><br>
+        <b>{{foUser.username}}</b><br>
+        <p>{{foUser.status}}</p>
+        <button class="btn btn-danger" (click)="unfollow(foUser.username)">Unfollow</button><br><br><br>
+      </div>
+
+      <div id="div-follow-add" class="div-follow">
+        <input type="text" placeholder="Username" id="follow-add" maxlength="50"> &nbsp;
+        <input type="button" class="btn-primary" value="Add" (click)="addFollow()"><br><br>
+      </div>
+      <div class="div-message-box">
+        <b>{{warningMessage}}</b>
+      </div>
+      <br>
+    </div>
+
+    <div id="div-search">
+      <br>
+      <input type="text" placeholder="Search text/author" id="search-input"> &nbsp;
+      <input type="button" class="btn-primary" value="Search Text" (click)="searchText()"> &nbsp;
+      <input type="button" class="btn-primary" value="Search Author" (click)="searchAuthor()"><br><br>
+      <div id="div-post-border-up" *ngFor="let post of searchPosts; let indexOfPost = index;">
+        <p style="text-align: left; margin-left: 10px">Search result {{indexOfPost + 1}}: </p>
+        <h5>{{post.authorUsername}}</h5>
+        <p>{{post.timeStamp}}</p>
+        <p>{{post.body}}</p>
+        <ng-container *ngIf="post.imgUrl != ''">
+          <img class="img-post" src="{{post.imgUrl}}" title="post picture"><br>
+        </ng-container>
+        <br><br>
+      </div>
+
+    </div>
+
+    <div id="div-posts"><br>
+      <div id="div-post-border-bottom" *ngFor="let post of posts">
+        <div id="div-single-post">
+          <h5>{{post.authorUsername}}</h5>
+          <p>{{post.timeStamp}}</p>
+          <p>{{post.body}}</p>
+          <ng-container *ngIf="post.imgUrl != ''">
+            <img class="img-post" src="{{post.imgUrl}}" title="post picture"><br>
+          </ng-container>
+          <br>
+          <div id="div-comment">
+            <div id="div-comment-text" *ngFor="let comment of post.comments">
+              <p><b>{{comment.authorUsername}}</b>: {{comment.body}} [{{comment.timeStamp}}]</p>
+              <ng-container *ngIf="comment.authorUsername == curUsername">
+                <input type="text" class="edit-comment" id="edit-comment-{{post.id}}-{{comment.id}}" placeholder="Update your comment"> &nbsp;
+                <button class="btn btn-warning" (click)="editComment(post.id, comment.id)">Edit Comment</button><br><br>
+              </ng-container>
+            </div>
+          </div>
+          <br>
+          <input type="text" class="edit-text" id="edit-text-{{post.id}}" placeholder="Your text here"> <br><br>
+          <ng-container *ngIf="post.authorUsername == curUsername">
+            <button class="btn btn-warning" (click)="editPost(post.id)">Edit Post</button>&nbsp;
+          </ng-container>
+          <button class="btn btn-success" (click)="addComment(post.id)">Add Comment</button>
+          <br><br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

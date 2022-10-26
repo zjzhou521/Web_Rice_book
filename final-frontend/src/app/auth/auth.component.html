@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Zijian Zhou">
+  <title>Auth Page</title>
+</head>
+
+<body (load)="onLoad()">
+
+<!--<ol>-->
+<!--  <li *ngFor="let user of users">{{user.username}} - {{user.password}}</li>-->
+<!--</ol>-->
+
+<div class="div-center">
+  <img src="{{imgURL}}" title="rice picture">
+  <div class="container-fluid p-3 my-3 bg-primary text-white" style="width: 1000px">
+    <div class="text-left">
+      <h3>
+        Welcome to RiceBook! &nbsp;
+        <!--        <button class="btn btn-warning" [routerLink]="['/']">Auth page</button>&nbsp;-->
+        <!--        <button class="btn btn-warning" [routerLink]="['/main']">Main page</button>&nbsp;-->
+        <!--        <button class="btn btn-warning" [routerLink]="['/profile']">Profile page</button>-->
+      </h3>
+    </div>
+  </div>
+  <div id="div-begin" class="container-fluid p-3 my-3 bg-primary text-white" style="width: 1000px">
+    <div class="text-center">
+      <h4>User Login</h4>
+    </div>
+  </div>
+
+  <form [formGroup]="loginForm" id="UserLogin" (ngSubmit)="checkLogin()" ngNativeValidate>
+    <label for="log_ac_name">Account Name</label>
+    <br>
+    <input type="text" id="log_ac_name" name="log_ac_name" placeholder="account_name" formControlName="log_ac_name" required>
+    <!--    pattern="^[A-Za-z]+$"-->
+    <br>
+    <br>
+    <label for="log_password">Password</label>
+    <br>
+    <input type="password" id="log_password" name="log_password" formControlName="log_password" placeholder="password">
+    <br>
+    <br>
+    <input type="hidden" id="log_timestamp" name="log_timestamp" value="{{curTime.getTime()}}">
+    <input type="submit" class="btn-success" value="Login"> &nbsp;
+    <input type="reset" class="btn-danger" value="Clear"><br><br>
+    <ng-container *ngIf="backendUrl != ''">
+      <a href="{{backendUrl}} + 'auth/google'">Sign in with Google</a>
+    </ng-container>
+  </form>
+  <br>
+  <br>
+
+  <div class="container-fluid p-3 my-3 bg-primary text-white" style="width: 1000px">
+    <div class="text-center">
+      <h4>User Registration</h4>
+    </div>
+  </div>
+
+  <form [formGroup]="regForm" id="UserRegistration" [action]="['/']" (ngSubmit)="checkAll()" ngNativeValidate>
+    <label for="ac_name">Account Name</label>
+    <br>
+    <input type="text" id="ac_name" name="ac_name" placeholder="account_name" formControlName="ac_name" required>
+    <!--    pattern="^[A-Za-z]+$"-->
+    <br>
+    <br>
+    <label for="dis_name">Display Name (optional)</label>
+    <br>
+    <input type="text" id="dis_name" name="dis_name" placeholder="display_name" formControlName="dis_name">
+    <br>
+    <br>
+    <label for="email">Email Address</label>
+    <br>
+    <input type="email" id="email" name="email" placeholder="foo@gmail.com" formControlName="email" required>
+    <br>
+    <br>
+    <label for="phone">Phone Number</label>
+    <br>
+    <input type="text" id="phone" name="phone" placeholder="123-123-1234" pattern="\d{3}-\d{3}-\d{4}" formControlName="phone" required>
+    <br>
+    <br>
+    <label for="birth">Date of Birth</label>
+    <br>
+    <input type="date" id="birth" name="birth" formControlName="birth" required>
+    <br>
+    <br>
+    <label for="zip">Zipcode</label>
+    <br>
+    <input type="text" id="zip" name="zip" placeholder="12345" pattern="\d{5}" formControlName="zip" required>
+    <br>
+    <br>
+    <label for="password">Password</label>
+    <br>
+    <input type="password" id="password" name="password" placeholder="password" formControlName="password" required>
+    <br>
+    <br>
+    <label for="password_confirm">Password Confirmation</label>
+    <br>
+    <input type="password" id="password_confirm" name="password_confirm" placeholder="password" formControlName="password_confirm" required>
+    <br>
+    <br>
+    <input type="hidden" id="timestamp" name="timestamp" value="{{curTime.getTime()}}" formControlName="timestamp">
+    <input type="submit" class="btn-success" value="Register"> &nbsp;
+    <input type="reset" class="btn-danger" value="Clear">
+    <!--    <p>Testboard:<span id="test">{{curTime}}</span></p>-->
+  </form>
+  <br>
+</div>
+</body>
+</html>
+
